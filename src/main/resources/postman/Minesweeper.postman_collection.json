@@ -1,0 +1,1499 @@
+{
+	"info": {
+		"_postman_id": "ac4bce8d-f87b-49e8-8549-6c330b15b527",
+		"name": "Minesweeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15514812"
+	},
+	"item": [
+		{
+			"name": "commands",
+			"item": [
+				{
+					"name": "resetGame",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"height\":5,\r\n    \"width\":5,\r\n    \"mineCount\":5,\r\n    \"seed\":15625765\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/resetGame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"resetGame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 1 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 2 ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 3 ? ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 0,\r\n    \"y\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flagCell",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 1 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 2 ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 3 ? ⚑ ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/flagCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"flagCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unflagCell",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 1 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 2 ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 3 ? ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/unflagCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"unflagCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 1 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 2 ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 3 ? ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test: Game Lost",
+			"item": [
+				{
+					"name": "resetGame",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"height\":5,\r\n    \"width\":5,\r\n    \"mineCount\":5,\r\n    \"seed\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/resetGame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"resetGame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('PREPARED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 1,\r\n    \"y\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 2 - LOST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('FINISHED_LOST');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 * ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus - check lost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('FINISHED_LOST');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 * ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test: Game Won",
+			"item": [
+				{
+					"name": "resetGame",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"height\":5,\r\n    \"width\":5,\r\n    \"mineCount\":5,\r\n    \"seed\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/resetGame",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"resetGame"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('PREPARED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('? ? ? ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 1,\r\n    \"y\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? ? ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? ?');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? ?');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 4,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 4,\r\n    \"y\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? ?');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 4,\r\n    \"y\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('? ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 4,\r\n    \"y\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('1 ? ? 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 0,\r\n    \"y\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('STARTED');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('1 ? 2 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 2,\r\n    \"y\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "openCell turn 9 - WON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('FINISHED_WON');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 2 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('1 ? 2 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/openCell",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"openCell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gameStatus - check won",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check gameState is STARTED\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.gameState).to.eql('FINISHED_WON');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"check field is matching expected values\", () => {\r",
+									"    //parse the response JSON and test three properties\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.field[0]).to.eql('0 0 1 ? 1');\r",
+									"    pm.expect(responseJson.field[1]).to.eql('0 0 2 2 2');\r",
+									"    pm.expect(responseJson.field[2]).to.eql('0 0 2 ? 2');\r",
+									"    pm.expect(responseJson.field[3]).to.eql('1 1 3 ? 3');\r",
+									"    pm.expect(responseJson.field[4]).to.eql('1 ? 2 2 ?');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 3,\r\n    \"y\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/minesweeper/gameStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"minesweeper",
+								"gameStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
